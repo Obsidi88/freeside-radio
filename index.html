@@ -30,8 +30,8 @@
     // Create a canvas texture with the text
     const textCanvas = document.createElement('canvas');
     const ctx = textCanvas.getContext('2d');
-    textCanvas.width = 2048;
-    textCanvas.height = 1024;
+    textCanvas.width = window.innerWidth;
+    textCanvas.height = window.innerHeight;
 
     function drawText() {
       ctx.clearRect(0, 0, textCanvas.width, textCanvas.height);
@@ -44,7 +44,7 @@
       // 2em offset from top ≈ 240px at 120px font size
       ctx.fillText('radio freeside', textCanvas.width / 2, 240);
       ctx.font = 'bold 48px monospace';
-      ctx.fillText('$ mpv https://mixnet.dev/stream', textCanvas.width / 2, 400);
+      ctx.fillText('$ mpv --cache=no https://mixnet.dev/stream', textCanvas.width / 2, 400);
     }
     drawText();
 
