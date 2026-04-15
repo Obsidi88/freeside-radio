@@ -145,14 +145,19 @@
     scene.add(mesh);
 
     function onResize() {
-      renderer.setSize(window.innerWidth, window.innerHeight);
-      textCanvas.width = window.innerWidth;
-      textCanvas.height = window.innerHeight;
+      const w = window.innerWidth;
+      const h = window.innerHeight;
+      renderer.setSize(w, h);
+      textCanvas.width = w;
+      textCanvas.height = h;
       drawText();
+      textTexture.dispose();
+      textTexture.image = textCanvas;
       textTexture.needsUpdate = true;
-      glitchMaterial.uniforms.uResolution.value.set(window.innerWidth, window.innerHeight);
+      glitchMaterial.uniforms.uResolution.value.set(w, h);
     }
     window.addEventListener('resize', onResize);
+    window.addEventListener('orientationchange', () => setTimeout(onResize, 100));
 
     document.addEventListener('click', () => {
       if (isPlaying) {
